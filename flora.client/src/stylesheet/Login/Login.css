@@ -1,0 +1,27 @@
+.loginTitle {
+    text-align: center;
+    font-size: 3em;
+    margin: 0;
+}
+
+.loginSection > a {
+    text-align: end;
+}
+
+.loginButton {
+    color: white;
+    font-size: 1.15em;
+    border: none;
+    border-radius: 2vw;
+}
+
+.signUpContainer {
+    display: grid;
+    justify-items: center;
+    position: relative;
+    top: 30%;
+}
+
+.signUpContainer > p {
+    margin-bottom: 0;
+}

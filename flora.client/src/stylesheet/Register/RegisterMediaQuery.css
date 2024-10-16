@@ -1,0 +1,18 @@
+@media(min-width: 400px) and (max-width: 655px) {
+    .registrationSection {
+        left: 22%;
+    }
+
+    .registrationSection > * {
+        position: relative;
+    }
+
+    .registerTitle {
+        font-size: 1em;
+        bottom: 25%;
+    }
+
+    .registerCredentialsContainer, .signInButton, .signInContainer, .registerTitle {
+        right: 25%;
+    }
+}

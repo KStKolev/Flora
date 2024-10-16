@@ -1,0 +1,25 @@
+.registerTitle {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+.signInButton {
+    color: white;
+    font-size: 1.15em;
+    border: none;
+    border-radius: 2vw;
+    margin-bottom: 1em;
+}
+
+.signInContainer {
+    display: grid;
+    justify-items: center;
+    position:relative;
+    top: 5%;
+}
+
+.signInContainer > p {
+    margin-bottom: 0;
+}

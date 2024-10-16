@@ -1,11 +1,47 @@
-﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+﻿.loginSection, .registrationSection, .forgotPasswordSection {
+    width: 25vw;
+    height: 62vh;
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+    padding: 4em;
+    display: grid;
+    position: relative;
+    left: 32%;
+    top: 8%;
 }
 
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+body, button {
+    background: linear-gradient(240deg, #ffddca, #f4c2c2, #fddde6, #ef98aa);
+    background-size: 800% 800%;
+    animation: gradientShift 8s ease infinite;
+}
+
+button, a {
+    transition: 0.4s ease-in-out;
+    transform: scale(1);
+    will-change: transform;
+}
+
+button:hover, a:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+input {
+    background-color: none;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
