@@ -1,4 +1,4 @@
-import LoginCredential from '/src/components/LoginCredential.jsx';
+import LoginCredential from '/src/components/Login/LoginCredential.jsx';
 import '/src/stylesheet/Login/Login.css';
 import '/src/stylesheet/Login/LoginMediaQuery.css';
 

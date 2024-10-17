@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import RegisterCredential from '/src/components/RegisterCredential.jsx';
+import RegisterCredential from '/src/components/Register/RegisterCredential.jsx';
 import '/src/stylesheet/Register/Register.css';
 import '/src/stylesheet/Register/RegisterMediaQuery.css';
 

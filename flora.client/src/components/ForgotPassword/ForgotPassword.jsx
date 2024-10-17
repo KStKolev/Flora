@@ -1,5 +1,5 @@
 import '/src/stylesheet/ForgotPassword/ForgotPassword.css'; 
-import '/src/stylesheet/ForgotPassword/ForgotMediaQuery.css';
+import '/src/stylesheet/ForgotPassword/ForgotPasswordMediaQuery.css';
 
 export default function ForgotPassword()
 {

@@ -1,11 +1,11 @@
 import './App.css';
-import ForgotPassword from './components/ForgotPassword.jsx';
+import Login from '/src/components/Login/Login';
 
 function App() {
     
     return (
         <>
-            <ForgotPassword />
+            <Login />
         </>
     );
 
