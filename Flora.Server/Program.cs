@@ -13,8 +13,18 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<FloraDbContext>();
 builder.Services.AddTransient<IPasswordHash, PasswordHash>();
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
+var app = builder.Build();
+app.UseCors("AllowAll");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

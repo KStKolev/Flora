@@ -9,20 +9,16 @@
             Id = Guid.NewGuid();
         }
 
+        [Key]
         public Guid Id { get; set; }
 
         [Required]
-        public string UserName { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
 
         [Required]
         public string Email { get; set; } = string.Empty;
 
         [Required]
         public string PasswordHash { get; set; } = string.Empty;
-
-        public byte[] Image { get; set; } = null!;
-
-        [Required]
-        public Role Role { get; set; } = null!;
     }
 }

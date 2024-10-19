@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\contexts\" />
-    <Folder Include="src\lib\" />
-    <Folder Include="src\stylesheet\NewFolder\" />
+    <Folder Include="src\lib\utils\" />
   </ItemGroup>
 </Project>

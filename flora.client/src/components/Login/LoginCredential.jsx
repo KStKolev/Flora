@@ -3,9 +3,10 @@
 /* eslint-disable react/prop-types */
 
 import '/src/stylesheet/Login/LoginCredential.css';
-import { useEffect, useRef } from 'react';
+import { useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { nanoid } from 'nanoid';
 
 export default function LoginCreadential(props)
 {
@@ -17,15 +18,25 @@ export default function LoginCreadential(props)
     }, []);
 
     const icon = props.credential === "password" ? faLock : faUser;
+    const inputId = nanoid();
 
     return (
         <div className="loginCredentialsContainer">
-            <label>{`${props.credentialCapital}`}</label>
+            <label htmlFor={inputId}>{`${props.credentialCapital}`}</label>
             <div>
-                <FontAwesomeIcon icon={icon} />
-                <input type="text" placeholder={`Type your ${props.credential}`} className="loginInput" />
+                <FontAwesomeIcon icon={icon} className="loginIcon"/>
+                <input
+                    type="text"
+                    placeholder={`Type your ${props.credential}`}
+                    className="loginInput"
+                    value={props.value}
+                    onChange={props.onChange}
+                    id={inputId}
+                    onFocus={props.onFocus}
+                    onBlur={props.onBlur}
+                />
             </div>
-            <hr />
+            {props.error && <p className="errorMessage">{props.error}</p>}
         </div>
     );
 }

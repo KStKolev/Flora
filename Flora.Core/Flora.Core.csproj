@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Flora.Custom\Flora.Custom.csproj" />
     <ProjectReference Include="..\Flora.Data\Flora.Data.csproj" />
   </ItemGroup>
 

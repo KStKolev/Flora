@@ -1,24 +1,17 @@
 @media(min-width: 400px) and (max-width: 655px) {
     .loginSection {
-        left: 22%;
+        margin-bottom: 0;
     }
 
     .loginTitle {
-        font-size: 1em;
-    }
-
-    .loginCredentialsContainer > div *, .loginCredentialsContainer > label,
-    .signUpContainer > p, .loginSection > a, .signUpContainer > a {
-        font-size: 0.5em;
-    }
-
-    .loginSection > a {
-        position: relative;
-        bottom: 40%;
+        font-size: 1.5em;
     }
 
     .loginButton {
-        font-size: 0.8em;
-        border-radius: 4vw;
+        font-size: 1em;
+    }
+
+    .loginInput {
+        font-size: 1em;
     }
 }

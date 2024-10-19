@@ -1,8 +1,13 @@
+.registrationSection {
+    height: 65%;
+    gap: 1.5em;
+    padding: 6em;
+    margin-bottom: 3em;
+}
+
 .registerTitle {
     text-align: center;
-    font-size: 2em;
-    margin: 0;
-    padding-bottom: 1em;
+    font-size: 2.5em;
 }
 
 .signInButton {
@@ -10,16 +15,21 @@
     font-size: 1.15em;
     border: none;
     border-radius: 2vw;
-    margin-bottom: 1em;
+    width: 100%;
+    justify-self: center;
 }
 
 .signInContainer {
     display: grid;
+    gap: 0.3em;
     justify-items: center;
-    position:relative;
-    top: 5%;
 }
 
-.signInContainer > p {
-    margin-bottom: 0;
+.signInContainer > * {
+    font-size: 1em;
+}
+
+.registerError {
+    text-align: center;
+    color: red;
 }

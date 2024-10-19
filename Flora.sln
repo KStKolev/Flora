@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flora.Server", "Flora.Serve
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "flora.client", "flora.client\flora.client.esproj", "{37FFEBFA-3344-42DC-870E-71C91ADB7DF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flora.Core", "Flora.Core\Flora.Core.csproj", "{1ECAED1D-BA7F-4EA8-B0AE-EB7E76351207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flora.Core", "Flora.Core\Flora.Core.csproj", "{1ECAED1D-BA7F-4EA8-B0AE-EB7E76351207}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flora.Data", "Flora.Data\Flora.Data.csproj", "{EE878D46-A2EF-46AA-8999-61064B047265}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flora.Data", "Flora.Data\Flora.Data.csproj", "{EE878D46-A2EF-46AA-8999-61064B047265}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flora.Custom", "Flora.Custom\Flora.Custom.csproj", "{3300FF35-D8EE-4231-B4EC-06C06E119D28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{EE878D46-A2EF-46AA-8999-61064B047265}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE878D46-A2EF-46AA-8999-61064B047265}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE878D46-A2EF-46AA-8999-61064B047265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3300FF35-D8EE-4231-B4EC-06C06E119D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3300FF35-D8EE-4231-B4EC-06C06E119D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3300FF35-D8EE-4231-B4EC-06C06E119D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3300FF35-D8EE-4231-B4EC-06C06E119D28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

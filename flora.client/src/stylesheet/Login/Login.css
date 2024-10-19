@@ -1,27 +1,43 @@
+.loginSection {
+    height: 65%;
+    gap: 2em;
+    padding: 6em;
+    margin-bottom: 2.5em;
+}
+
 .loginTitle {
     text-align: center;
     font-size: 3em;
-    margin: 0;
 }
 
 .loginSection > a {
-    text-align: end;
+    width: fit-content;
+    height: fit-content;
+    justify-self: end;
+    font-size: 1.1em;
 }
 
 .loginButton {
+    width: 100%;
     color: white;
-    font-size: 1.15em;
+    font-size: 1.4em;
     border: none;
     border-radius: 2vw;
+    justify-self: center;
 }
 
 .signUpContainer {
     display: grid;
     justify-items: center;
-    position: relative;
-    top: 30%;
+    height: fit-content;
+    gap: 1.2em;
 }
 
-.signUpContainer > p {
-    margin-bottom: 0;
+.signUpContainer > * {
+    font-size: 1.1em;
+}
+
+.loginError {
+    text-align: center;
+    color: red;
 }

@@ -4,15 +4,10 @@
     using Flora.Data;
     using Flora.Data.Entities;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.DependencyInjection;
 
     public static class CurrentUser
     {
         private static ApplicationUser user = null!;
-
-        private static IPasswordHash passwordHash = new ServiceCollection().
-            BuildServiceProvider()
-            .GetService<IPasswordHash>()!;
 
         public static ApplicationUser User 
         {
@@ -26,13 +21,13 @@
             {
                 var foundUser = await dbContext
                     .ApplicationUser
-                    .FirstOrDefaultAsync(u => u.UserName == userName);
+                    .FirstOrDefaultAsync(u => u.Username == userName);
 
                 return foundUser;
             }
         }
 
-        public async static Task<ApplicationUser?> LoginUser(string userName, string password) 
+        public async static Task<ApplicationUser?> LoginUser(string userName, string password, IPasswordHash passwordHash) 
         {
             using (var dbContext = new FloraDbContext())
             {
@@ -45,51 +40,55 @@
 
                     return user = await dbContext
                     .ApplicationUser
-                    .FirstAsync(u => u.UserName == userName);
+                    .FirstAsync(u => u.Username == userName);
                 }
                 return null;
             }
         }
 
-        public async static Task<ApplicationUser?> RegisterUser(string userName, string email, 
-            string password, string confirmPassword) 
+        public async static Task<ApplicationUser?> RegisterUser(string username, string email, 
+            string password, IPasswordHash passwordHash) 
         {
-            if (password == confirmPassword)
+            using (var dbContext = new FloraDbContext())
             {
-                using (var dbContext = new FloraDbContext())
+                ApplicationUser? foundUser = await UserExists(username);
+                if (foundUser != null)
+                    return null;
+
+                ApplicationUser applicationUser = new ApplicationUser()
                 {
-                    ApplicationUser? foundUser = await UserExists(userName);
-                    if (foundUser != null)
-                        return null;
+                    Username = username,
+                    Email = email,
+                    PasswordHash = passwordHash.HashPassword(password),
+                };
 
-                    ApplicationUser applicationUser = new ApplicationUser()
-                    {
-                        UserName = userName,
-                        Email = email,
-                        PasswordHash = passwordHash.HashPassword(password),
-                        Role = new Role() { Name = "User" }
-                    };
+                await dbContext
+                    .ApplicationUser
+                    .AddAsync(applicationUser);
+                await dbContext
+                    .SaveChangesAsync();
 
-                    await dbContext
-                        .ApplicationUser
-                        .AddAsync(applicationUser);
-                    await dbContext
-                        .SaveChangesAsync();
-
-                    user = applicationUser;
-                    return user;
-                }
+                user = applicationUser;
+                return user;
             }
-            return null;
         }
 
-        public static bool IsAdmin() 
+        public async static Task<ApplicationUser?> SetNewPassword(string username, string email, 
+            string newPassword, IPasswordHash passwordHash) 
         {
-            if (user.Role.Name == "Admin")
+            using (var dbContext = new FloraDbContext())
             {
-                return true;
+                ApplicationUser? foundUser = await UserExists(username);
+                if (foundUser == null || foundUser.Email != email)
+                    return null;
+
+                foundUser.PasswordHash = passwordHash.HashPassword(newPassword);
+                dbContext.Entry(foundUser).State = EntityState.Modified;
+                await dbContext.SaveChangesAsync();
+
+                user = foundUser;
+                return user;
             }
-            return false;
-        }
+        } 
     }
 }

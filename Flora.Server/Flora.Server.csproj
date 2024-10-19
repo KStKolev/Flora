@@ -23,11 +23,8 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\Flora.Core\Flora.Core.csproj" />
+    <ProjectReference Include="..\Flora.Custom\Flora.Custom.csproj" />
     <ProjectReference Include="..\Flora.Data\Flora.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

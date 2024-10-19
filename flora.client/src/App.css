@@ -1,14 +1,14 @@
-﻿.loginSection, .registrationSection, .forgotPasswordSection {
-    width: 25vw;
-    height: 62vh;
-    border: none;
+﻿#root {
+    display: grid;
+}
+
+.loginSection, .registrationSection, .forgotPasswordSection {
     background-color: white;
     border-radius: 8px;
-    padding: 4em;
     display: grid;
-    position: relative;
-    left: 32%;
-    top: 8%;
+    justify-self: center;
+    margin:auto;
+    z-index: 1;
 }
 
 body, button {

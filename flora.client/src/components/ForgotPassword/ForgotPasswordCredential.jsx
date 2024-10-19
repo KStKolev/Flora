@@ -1,25 +1,23 @@
 /* eslint-disable react/prop-types */
-import '/src/stylesheet/Register/RegisterCredential.css';
 import { nanoid } from 'nanoid';
 
-export default function RegisterCredential(props) {
+export default function ForgotPasswordCredential(props) {
     const inputId = nanoid();
-
 
     return (
         <>
-            <div className="registerInput">
+            <div className="forgotPasswordCredentialsContainer">
                 <label htmlFor={inputId}>{props.label}</label>
                 <input
                     type="text"
-                    value={props.value}
-                    onChange={props.onChange}
                     id={inputId}
-                    onFocus={props.onFocus}
+                    value={props.value}
                     onBlur={props.onBlur}
+                    onFocus={props.onFocus}
+                    onChange={props.onChange}
                 />
-                {props.error && <p className="errorMessage">{props.error}</p>}
+                {props.error && <p className="forgotErrorMessage">{props.error}</p>}
             </div>
         </>
     );
-}
+};
