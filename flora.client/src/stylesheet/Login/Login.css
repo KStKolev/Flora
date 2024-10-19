@@ -1,8 +1,8 @@
 .loginSection {
     height: 65%;
     gap: 2em;
-    padding: 6em;
-    margin-bottom: 2.5em;
+    padding: 5em;
+    margin-bottom: 4em;
 }
 
 .loginTitle {
@@ -39,5 +39,5 @@
 
 .loginError {
     text-align: center;
-    color: red;
+    color: hsl(0 96% 38%);
 }

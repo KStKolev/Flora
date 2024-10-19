@@ -1,8 +1,4 @@
 @media(min-width: 400px) and (max-width: 655px) {
-    .loginSection {
-        margin-bottom: 0;
-    }
-
     .loginTitle {
         font-size: 1.5em;
     }

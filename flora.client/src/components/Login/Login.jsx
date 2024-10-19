@@ -1,9 +1,11 @@
-import LoginCredential from '/src/components/Login/LoginCredential.jsx';
 import '/src/stylesheet/Login/Login.css';
 import '/src/stylesheet/Login/LoginMediaQuery.css';
+import '/src/stylesheet/Background/GradientBackground.css';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import LoginCredential from '/src/components/Login/LoginCredential.jsx';
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -33,7 +35,7 @@ export default function Login() {
         });
 
         if (response.ok) {
-            { /*To the page*/}
+            goToMainPage();
         } else {
             setSubmitErrors('Failed to login.');
         }
@@ -42,6 +44,10 @@ export default function Login() {
 
     const goToRegister = () => {
         navigate('/register');
+    };
+
+    const goToMainPage = () => {
+        navigate('/mainPage');
     };
 
     const goToForgotPassword = () => {

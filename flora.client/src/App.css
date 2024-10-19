@@ -11,12 +11,6 @@
     z-index: 1;
 }
 
-body, button {
-    background: linear-gradient(240deg, #ffddca, #f4c2c2, #fddde6, #ef98aa);
-    background-size: 800% 800%;
-    animation: gradientShift 8s ease infinite;
-}
-
 button, a {
     transition: 0.4s ease-in-out;
     transform: scale(1);
@@ -30,18 +24,4 @@ button:hover, a:hover {
 
 input {
     background-color: none;
-}
-
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
 }

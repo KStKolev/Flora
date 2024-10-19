@@ -11,9 +11,9 @@
         public FloraDbContext() { }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; } = null!;
-        public DbSet<Comment> Comments { get; set; } = null!;
-        public DbSet<CommentSection> CommentSections { get; set; } = null!;
         public DbSet<Article> Articles { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<UserArticles> UserArticles { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

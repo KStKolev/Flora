@@ -1,9 +1,12 @@
 /* eslint-disable no-case-declarations */
 import '/src/stylesheet/ForgotPassword/ForgotPassword.css'; 
 import '/src/stylesheet/ForgotPassword/ForgotPasswordMediaQuery.css';
-import ForgotPasswordCredential from '/src/components/ForgotPassword/ForgotPasswordCredential.jsx';
+import '/src/stylesheet/Background/GradientBackground.css';
+
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+
+import ForgotPasswordCredential from '/src/components/ForgotPassword/ForgotPasswordCredential.jsx';
 
 export default function ForgotPassword() {
     const [userName, setUserName] = useState('');

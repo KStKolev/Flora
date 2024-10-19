@@ -1,11 +1,14 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable react/prop-types */
 
-import RegisterCredential from '/src/components/Register/RegisterCredential.jsx';
 import '/src/stylesheet/Register/Register.css';
 import '/src/stylesheet/Register/RegisterMediaQuery.css';
+import '/src/stylesheet/Background/GradientBackground.css';
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import RegisterCredential from '/src/components/Register/RegisterCredential.jsx';
 
 export default function Register() {
 

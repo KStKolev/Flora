@@ -1,6 +1,6 @@
 @media(min-width: 400px) and (max-width: 655px) {
     .registrationSection {
-        margin-bottom: 0;
+        gap:0;
     }
 
     .registerTitle {

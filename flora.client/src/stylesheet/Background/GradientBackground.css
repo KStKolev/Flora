@@ -1,0 +1,19 @@
+body, button {
+    background: linear-gradient(240deg, #ffddca, #f4c2c2, #fddde6, #ef98aa);
+    background-size: 800% 800%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
