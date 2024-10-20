@@ -1,0 +1,10 @@
+.mainPageSection {
+    z-index: 1;
+}
+
+.mainPageSection {
+    border-radius: 2vw;
+    background-color: white;
+    margin: 8em auto auto auto;
+    padding: 5em;
+}

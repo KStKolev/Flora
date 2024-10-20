@@ -1,0 +1,20 @@
+body, button {
+    background: linear-gradient(240deg, #fffacd, #fdf5e6, #fff8dc, #faebd7);
+    background-size: 800% 800%;
+    animation: gradientShift 8s ease infinite;
+    overflow-y: auto;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

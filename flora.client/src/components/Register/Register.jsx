@@ -34,7 +34,7 @@ export default function Register() {
         const response = await fetch('http://localhost:5155/api/account/register', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/jsx; charset=utf-8'
             },
             body: JSON.stringify({
                 username: userName,

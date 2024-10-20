@@ -16,5 +16,7 @@
         public byte[] Image { get; set; } = null!;
 
         public int TimeToRead { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

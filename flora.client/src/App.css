@@ -1,5 +1,9 @@
 ﻿#root {
+    height: auto;
     display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: min-content;
+    align-items: end;
 }
 
 .loginSection, .registrationSection, .forgotPasswordSection {
@@ -7,8 +11,11 @@
     border-radius: 8px;
     display: grid;
     justify-self: center;
-    margin:auto;
+    margin: auto;
     z-index: 1;
+    -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+    -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+    box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
 }
 
 button, a {
@@ -24,4 +31,14 @@ button:hover, a:hover {
 
 input {
     background-color: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer > p {
+    text-align: center;
 }

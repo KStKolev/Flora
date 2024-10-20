@@ -1,0 +1,10 @@
+.paginationMainPage {
+    display: flex;
+    gap: 4px;
+    padding: 1em;
+    justify-content: center;
+}
+
+.paginationMainPage > * {
+    font-size: 1.5em;
+}

@@ -2,7 +2,7 @@
 
 namespace Flora.Data.Entities
 {
-    public class UserArticles
+    public class UserArticle
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }

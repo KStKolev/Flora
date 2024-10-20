@@ -1,0 +1,21 @@
+.navigationBar {
+    width: 100%;
+    height: fit-content;
+    border-radius: 4px;
+    background-color: hsl(50 61% 90%);
+    -webkit-box-shadow: -3px 1px 5px 1px rgba(157,147,147,0.91);
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.navigationBar > li {
+    padding: 1.3em;
+}
+
+.navigationBar > li a {
+    font-size: 1.3em;
+}
