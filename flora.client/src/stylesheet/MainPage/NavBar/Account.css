@@ -1,0 +1,30 @@
+.accountSection {
+    display: grid;
+    justify-content: center;
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+.accountContainer {
+    display: grid;
+    background-color: white;
+    border-radius: 1em;
+    padding: 3em;
+    gap: 2em;
+}
+
+.accountContainer > img {
+    width: 300px;
+    -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+    -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+    box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+}
+
+.accountContainer > div {
+    display: grid;
+    gap: 1em;
+}
+
+.userCredentails > p {
+    width: fit-content;
+}

@@ -9,6 +9,7 @@ import Account from '/src/components/MainPage/NavBar/Account.jsx';
 import CreateArticle from '/src/components/MainPage/NavBar/CreateArticle.jsx';
 import DeleteArticle from '/src/components/MainPage/NavBar/DeleteArticle.jsx';
 import SavedArticles from '/src/components/MainPage/NavBar/SavedArticles.jsx';
+import Article from '/src/components/MainPage/Article.jsx';
 
 function App() {
     return(
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/mainPage/createArticle" element={<CreateArticle />} />
                     <Route path="/mainPage/savedArticles" element={<SavedArticles />} />
                     <Route path="/mainPage/deleteArticle" element={<DeleteArticle />} />
+                    <Route path="/mainPage/article" element={<Article />} />
                 </Routes>
             </Router>
         </>

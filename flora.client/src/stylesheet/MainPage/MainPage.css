@@ -1,10 +1,25 @@
 .mainPageSection {
+    display: grid;
+    border-radius: 2vw;
+    background-color: white;
+    margin: 8em auto 2em auto;
+    padding: 5em;
     z-index: 1;
 }
 
-.mainPageSection {
-    border-radius: 2vw;
-    background-color: white;
-    margin: 8em auto auto auto;
-    padding: 5em;
+.searchContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.searchContainer > * {
+    padding: 0.5em;
+}
+
+.searchContainer > input {
+    width: 70%;
+}
+
+.searchContainer > button {
+    border: 1px solid black;
 }

@@ -1,0 +1,15 @@
+.article-container {
+    display: grid;
+    justify-content: center;
+    gap: 5em;
+    padding: 12em 0em 5em 0em;
+}
+
+.article-container > div {
+    display: flex;
+    gap: 2em;
+}
+
+.article-container > * {
+    text-align: center;
+}
