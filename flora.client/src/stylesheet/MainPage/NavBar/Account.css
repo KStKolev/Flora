@@ -1,23 +1,28 @@
 .accountSection {
     display: grid;
     justify-content: center;
-    margin-top: 10em;
-    margin-bottom: 10em;
+    margin: 7em 0em 2em 0em;
 }
 
 .accountContainer {
     display: grid;
     background-color: white;
+    border: 1px solid rgba(157,147,147,0.91);
     border-radius: 1em;
     padding: 3em;
-    gap: 2em;
+    gap: 1.5em;
 }
 
 .accountContainer > img {
-    width: 300px;
+    border-radius: 5px;
+    width: 280px;
     -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+}
+
+.accountContainer > div > p {
+    color: rgb(78, 71, 71);
 }
 
 .accountContainer > div {
@@ -25,14 +30,25 @@
     gap: 1em;
 }
 
-.userCredentails > p {
-    width: fit-content;
-}
-
 .accountContainer > button {
     width: 50%;
     justify-self: center;
-    border: 1px solid black;
+    border: 1px solid rgba(157,147,147,0.91);
     border-radius: 4px;
-    padding: 1em;
+    padding: 0.5em;
+}
+
+@media(min-width: 400px) and (max-width: 655px) {
+    .accountContainer > img {
+        justify-self: center;
+        width: 200px;
+    }
+
+    .accountContainer > div > p {
+        font-size: 0.8em;
+    }
+
+    .accountContainer {
+        gap: 1em;
+    }
 }

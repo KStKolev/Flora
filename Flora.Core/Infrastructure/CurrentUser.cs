@@ -62,9 +62,17 @@
                     PasswordHash = passwordHash.HashPassword(password),
                 };
 
+                User newUser = new User()
+                {
+                    Username = username,
+                    Email = email,
+                    Image = LoadDefaultImage()
+                };
+
                 await dbContext
                     .ApplicationUser
                     .AddAsync(applicationUser);
+                await dbContext.Users.AddAsync(newUser);
                 await dbContext
                     .SaveChangesAsync();
 
@@ -89,6 +97,18 @@
                 user = foundUser;
                 return user;
             }
-        } 
+        }
+        private static byte[] LoadDefaultImage()
+        {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string relativePath = Path.Combine("..", "..", "..", "..", "flora.client", "src", "assets", "anonymousUser.png");
+            string path = Path.GetFullPath(Path.Combine(baseDirectory, relativePath));
+
+            if (File.Exists(path))
+            {
+                return File.ReadAllBytes(path);
+            }
+            return Array.Empty<byte>();
+        }
     }
 }
