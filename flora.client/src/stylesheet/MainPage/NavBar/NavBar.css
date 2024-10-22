@@ -5,17 +5,26 @@
     background-color: hsl(50 61% 90%);
     -webkit-box-shadow: -3px 1px 5px 1px rgba(157,147,147,0.91);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
 }
 
-.navigationBar > li {
+.navigationBar > li:not(.phone-nav) {
     padding: 1.3em;
+    margin-left: 3em;
 }
 
 .navigationBar > li a {
     font-size: 1.3em;
+}
+
+.menuContainer > li {
+    cursor: pointer;
+}
+
+.phone-nav {
+    display: none;
 }

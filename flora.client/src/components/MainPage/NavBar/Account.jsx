@@ -13,6 +13,9 @@ export default function Account() {
                         <p>Name:</p>
                         <p>Email:</p>
                     </div>
+                    <button>
+                        Set profile picture
+                    </button>
                 </div>
             </section>
             <Footer/>
