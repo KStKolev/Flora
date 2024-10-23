@@ -2,10 +2,12 @@ import '/src/stylesheet/MainPage/NavBar/Account.css';
 import NavBar from '/src/components/MainPage/NavBar/NavBar.jsx';
 import Footer from '/src/components/MainPage/Footer.jsx';
 import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 export default function Account() {
     const [user, setUser] = useState({});
     const [image, setImage] = useState("");
+    const inputId = nanoid();
 
     useEffect(() => {
         fetch('http://localhost:5155/api/user/getUser')
@@ -55,7 +57,7 @@ export default function Account() {
                         <p>Name: {user.username}</p>
                         <p>Email: {user.email}</p>
                     </div>
-                    <input type="file" onChange={handleFileChange} />
+                    <input id={inputId} type="file" onChange={handleFileChange} />
                     <button onClick={handleUpload}>
                         Set profile picture
                     </button>

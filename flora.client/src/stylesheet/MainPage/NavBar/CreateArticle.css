@@ -1,0 +1,61 @@
+.createArticleSection {
+    display: grid;
+    justify-content: center;
+    margin: 7em 0em 2em 0em;
+}
+
+.createArticleContainer {
+    display: grid;
+    border-radius: 1em;
+    background-color: white;
+    border: 1px solid rgba(157,147,147,0.91);
+    padding: 3em;
+    gap: 2em;
+}
+
+.createArticleContainer > h1 {
+    padding: 0.4em;
+    border-bottom: 1px solid black;
+    justify-self: center;
+}
+
+.estimatedTimeContainer, .descriptionContainer {
+    display: grid;
+    gap: 0.8em;
+}
+
+.estimatedTimeContainer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.estimatedTimeContainer > input {
+    width: 10%;
+}
+
+.descriptionContainer > textarea {
+    height: 10em;
+    resize: none;
+    outline: none;
+}
+
+.createImageContainer {
+    display: flex;
+    gap: 0.8em;
+    justify-content: center;
+    margin-left: 4em;
+}
+
+.createImageContainer > input {
+    margin-top: 0.2em;
+}
+
+.createArticleContainer > button {
+    width: 50%;
+    font-size: 1em;
+    border: 1px solid rgba(157,147,147,0.91);
+    border-radius: 4px;
+    padding: 1em;
+    justify-self: center;
+}

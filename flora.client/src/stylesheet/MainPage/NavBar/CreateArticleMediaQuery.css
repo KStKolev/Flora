@@ -1,0 +1,9 @@
+@media(min-width: 400px) and (max-width: 655px) {
+    .createArticleContainer {
+        padding: 0.5em;
+    }
+
+    .descriptionContainer > textarea {
+        height: 10em;
+    }
+}
