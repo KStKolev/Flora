@@ -19,7 +19,7 @@ export default function DropDownMenu() {
     };
 
     const navigateToMainPage = () => {
-        navigate('/mainPage');
+        navigate('/mainPage?page=1');;
     };
 
     return (

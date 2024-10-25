@@ -15,9 +15,6 @@ export default function Account() {
                 .then(data => {
                     setUser(data);
                 })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                })
             );
     }, []);
 

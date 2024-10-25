@@ -39,6 +39,14 @@ ul {
     padding: 0;
 }
 
+p {
+    text-shadow: 0px 0px 0.5px black;
+}
+
+footer {
+    height: fit-content;
+}
+
 footer > p {
     text-align: center;
 }

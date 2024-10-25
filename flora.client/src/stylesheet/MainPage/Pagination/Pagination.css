@@ -1,11 +1,13 @@
 .paginationMainPage {
     display: flex;
-    gap: 4px;
-    padding: 1em;
     justify-content: center;
-    padding: 2em;
+    gap: 5px;
 }
 
 .paginationMainPage > * {
     font-size: 1.5em;
+}
+
+.paginationMainPage > p {
+    cursor: default;
 }

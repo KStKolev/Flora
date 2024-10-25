@@ -41,6 +41,12 @@
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder
+                .Entity<Article>()
+                .HasOne(a => a.User)
+                .WithMany(u => u.Articles)
+                .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(modelBuilder);
         }
     }

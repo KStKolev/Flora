@@ -47,7 +47,7 @@ export default function Login() {
     };
 
     const goToMainPage = () => {
-        navigate('/mainPage');
+        navigate('/mainPage?page=1');;
     };
 
     const goToForgotPassword = () => {

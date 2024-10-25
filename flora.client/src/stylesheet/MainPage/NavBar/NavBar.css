@@ -19,6 +19,7 @@
 
 .navigationBar > li a {
     font-size: 1.3em;
+    text-shadow: 0px 0px 0.5px black;
 }
 
 .menuContainer > li {

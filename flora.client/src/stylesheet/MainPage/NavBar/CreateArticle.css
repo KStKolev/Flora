@@ -1,7 +1,8 @@
 .createArticleSection {
     display: grid;
     justify-content: center;
-    margin: 7em 0em 2em 0em;
+    margin-top: 8em;
+    padding-bottom: 0.5em;
 }
 
 .createArticleContainer {
@@ -9,8 +10,8 @@
     border-radius: 1em;
     background-color: white;
     border: 1px solid rgba(157,147,147,0.91);
-    padding: 3em;
-    gap: 2em;
+    padding: 2.5em;
+    gap: 0.9em;
 }
 
 .createArticleContainer > h1 {
@@ -19,9 +20,13 @@
     justify-self: center;
 }
 
-.estimatedTimeContainer, .descriptionContainer {
+.estimatedTimeContainer, .descriptionContainer, .titleContainer {
     display: grid;
-    gap: 0.8em;
+    gap: 0.7em;
+}
+
+.titleContainer > input {
+    outline: none;
 }
 
 .estimatedTimeContainer {
@@ -43,8 +48,6 @@
 .createImageContainer {
     display: flex;
     gap: 0.8em;
-    justify-content: center;
-    margin-left: 4em;
 }
 
 .createImageContainer > input {
@@ -56,6 +59,8 @@
     font-size: 1em;
     border: 1px solid rgba(157,147,147,0.91);
     border-radius: 4px;
-    padding: 1em;
+    padding: 0.2em;
     justify-self: center;
+    position: relative;
+    top: 1em;
 }

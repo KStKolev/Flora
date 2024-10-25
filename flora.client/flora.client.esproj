@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\components\MainPage\Pagination\" />
-    <Folder Include="src\contexts\" />
-    <Folder Include="src\lib\utils\" />
     <Folder Include="src\stylesheet\MainPage\NavBar\" />
     <Folder Include="src\stylesheet\MainPage\Pagination\" />
   </ItemGroup>

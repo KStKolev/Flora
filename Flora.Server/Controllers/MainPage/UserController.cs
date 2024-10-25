@@ -21,7 +21,7 @@
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUser() 
         {
-            var user = await dbContext
+            User? user = await dbContext
                 .Users
                 .FirstOrDefaultAsync(u => u.Username == CurrentUser.User.Username);
 
