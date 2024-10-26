@@ -6,16 +6,12 @@ export default function DropDownMenu() {
         navigate('/mainPage/account');
     };
 
-    const navigateToDeleteArticle = () => {
-        navigate('/mainPage/deleteArticle');
-    };
-
     const navigateToCreateArticle = () => {
         navigate('/mainPage/createArticle');
     };
 
     const navigateToSavedArticles = () => {
-        navigate('/mainPage/savedArticles');
+        navigate('/mainPage/savedArticles?page=1');
     };
 
     const navigateToMainPage = () => {
@@ -32,9 +28,6 @@ export default function DropDownMenu() {
             </li>
             <li onClick={navigateToSavedArticles}>
                 <a>Saved Articles</a>
-            </li>
-            <li onClick={navigateToDeleteArticle}>
-                <a>Delete Articles</a>
             </li>
             <li onClick={navigateToAccount}>
                 <a>Account</a>

@@ -11,8 +11,7 @@
     border-radius: 2vw;
     background-color: white;
     margin: 8em auto 2em auto;
-    padding: 4em 4em 1em 4em;
-    z-index: 1;
+    padding: 4em 2em 1em 2em;
 }
 
 .searchContainer {
@@ -53,17 +52,16 @@
 }
 
 .articleContainer:hover {
-    transition: 1s ease-in-out;
     background-color: hsl(0, 19%, 95%);
-    opacity: 1.5;
-}
-
-.articleContainer > h2 {
-    border-bottom: 1px solid black;
+    transition: 1s ease-in-out;
 }
 
 .articleContainer > * {
     text-align: center;
+}
+
+.articleContainer > h2 {
+    border-bottom: 1px solid black;
 }
 
 .articleContainer > img {
@@ -73,7 +71,15 @@
 }
 
 .articleLink {
-    font-size: 1.5em;
-    text-decoration:none;
     color: black;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+@media(min-width: 0px) and (max-width: 655px) {
+    .articleContainer > img {
+        width: 150px;
+        height: 150px;
+        justify-self: center;
+    }
 }

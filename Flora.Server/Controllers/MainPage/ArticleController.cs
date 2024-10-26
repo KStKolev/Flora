@@ -57,5 +57,20 @@
             await dbContext.SaveChangesAsync();
             return Ok();
         }
+
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var article = await dbContext.Articles.FindAsync(id);
+            if (article == null)
+            {
+                return NotFound("Article not found.");
+            }
+
+            dbContext.Articles.Remove(article);
+            await dbContext.SaveChangesAsync();
+            return Ok();
+        }
     }
 }

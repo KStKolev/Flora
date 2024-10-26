@@ -1,35 +1,11 @@
 import '/src/stylesheet/MainPage/NavBar/NavBar.css';
 import '/src/stylesheet/MainPage/NavBar/NavBarMediaQuery.css';
 import DropDownMenu from '/src/components/MainPage/NavBar/DropDownMenu.jsx';
-import { useState, useEffect } from 'react';
-
 export default function NavBar() {
-    const [isActive, setIsActive] = useState(true);
-
     const clickPhoneNav = () => {
-        setIsActive(!isActive);
-        let dropDownElement = document.querySelector(".dropDownMenu");
-        if (isActive === false) {
-            dropDownElement.style.display = "none";
-        } else if (isActive === true) {
-            dropDownElement.style.display = "block";
-        }
+        let dropDownElement = document.querySelector('.dropDownMenu');
+        dropDownElement.classList.toggle('show');
     };
-
-    const handleResize = () => {
-        let dropDownElement = document.querySelector(".dropDownMenu");
-        if (window.innerWidth > 400) {
-            setIsActive(true);
-            dropDownElement.style.display = "none";
-        }
-    };
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     return (
         <ul className="navigationBar">

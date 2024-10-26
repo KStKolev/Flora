@@ -1,4 +1,4 @@
-@media(min-width: 400px) and (max-width: 655px) {
+@media(min-width: 0px) and (max-width: 655px) {
     .mainPageArticle {
         padding: 1em;
     }
@@ -15,11 +15,5 @@
     .createArticleContainer > button {
         padding: 0.2em;
         top: 0;
-    }
-
-    .articleContainer > img {
-        width: 150px;
-        height: 150px;
-        justify-self: center;
     }
 }

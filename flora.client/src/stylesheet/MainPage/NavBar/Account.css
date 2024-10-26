@@ -15,7 +15,8 @@
 
 .accountContainer > img {
     border-radius: 5px;
-    width: 280px;
+    width: 300px;
+    height: 300px;
     -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
@@ -38,10 +39,11 @@
     padding: 0.5em;
 }
 
-@media(min-width: 400px) and (max-width: 655px) {
+@media(min-width: 0px) and (max-width: 655px) {
     .accountContainer > img {
         justify-self: center;
         width: 200px;
+        height: 200px;
     }
 
     .accountContainer > div > p {

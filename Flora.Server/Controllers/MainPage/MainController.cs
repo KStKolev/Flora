@@ -1,5 +1,6 @@
 ﻿namespace Flora.Server.Controllers.MainPage
 {
+    using Flora.Core.Infrastructure;
     using Flora.Data;
     using Flora.Data.Entities;
     using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@
                 a.Description,
                 a.TimeToRead,
                 Image = Convert.ToBase64String(a.Image),
+                IsAuthor = a.User.Username == CurrentUser.User.Username,
                 Username = a.User.Username,
                 UserImage = a.User.Image
             })

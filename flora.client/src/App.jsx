@@ -7,9 +7,9 @@ import AppBackground from '/src/components/Background/AppBackground.jsx';
 import MainPage from '/src/components/MainPage/MainPage.jsx';
 import Account from '/src/components/MainPage/NavBar/Account.jsx';
 import CreateArticle from '/src/components/MainPage/NavBar/CreateArticle.jsx';
-import DeleteArticle from '/src/components/MainPage/NavBar/DeleteArticle.jsx';
 import SavedArticles from '/src/components/MainPage/NavBar/SavedArticles.jsx';
 import Article from '/src/components/MainPage/Article.jsx';
+import DeleteArticle from '/src/components/MainPage/DeleteArticle.jsx';
 
 function App() {
     return(
@@ -38,8 +38,8 @@ function App() {
                     <Route path="/mainPage/account" element={<Account />} />
                     <Route path="/mainPage/createArticle" element={<CreateArticle />} />
                     <Route path="/mainPage/savedArticles" element={<SavedArticles />} />
-                    <Route path="/mainPage/deleteArticle" element={<DeleteArticle />} />
                     <Route path="/mainPage/article" element={<Article />} />
+                    <Route path="/mainPage/article/deleteArticle" element={<DeleteArticle />} />
                 </Routes>
             </Router>
         </>

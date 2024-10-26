@@ -55,6 +55,7 @@
 
 .articleAuthorContainer > img {
     width: 60px;
+    height: 60px;
     margin-right: 4em;
     border-radius: 4px;
 }
@@ -64,7 +65,42 @@
     margin: 1em 1em 0 0;
 }
 
-@media(min-width: 400px) and (max-width: 655px) {
+.articleButtons {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+}
+
+.deleteArticle.show, .saveArticle, .removeArticle {
+    font-size: 1em;
+    padding: 1em;
+    border: 1px solid rgba(157,147,147,0.91);
+    background: linear-gradient(240deg, #fffacd, #fdf5e6, #fff8dc, #faebd7);
+    border-radius: 8px;
+}
+
+.saveArticle, .removeArticle {
+    width: 20%;
+    font-weight: bolder;
+}
+
+.deleteArticle {
+    display: none;
+}
+
+.deleteArticle.show {
+    width: 17%;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+@media(min-width: 0px) and (max-width: 655px) {
+    .articleButtons {
+        gap: 0.2em;
+    }
+
     .articleDisplayTitle > h1 {
         font-size: 1.4em;
     }
@@ -80,5 +116,10 @@
     .articleAuthorContainer {
         display: grid;
         gap: 1em;
+    }
+
+    .deleteArticle.show, .saveArticle {
+        width: fit-content;
+        padding: 0.2em;
     }
 }

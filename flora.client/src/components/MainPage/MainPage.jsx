@@ -74,42 +74,44 @@ export default function MainPage() {
     const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
     return (
-        <section className="mainPageSection">
-            <NavBar />
-            <article className="mainPageArticle">
-                <div className="searchContainer">
-                    <input
-                        className="articleSearchInput"
-                        type="text"
-                        placeholder="Search for articles"
-                        id={inputId}
-                        value={searchQuery}
-                        onChange={handleSearch}
-                    />
-                    <button onClick={clearSearch}>Clear</button>
-                </div>
-                {empty && filteredArticles.length === 0 ? (
-                    <div className="createFirstArticleContainer" onClick={goToCreate}>
-                        <p>Click here to create the first article!</p>
+        <>
+            <section className="mainPageSection">
+                <NavBar />
+                <article className="mainPageArticle">
+                    <div className="searchContainer">
+                        <input
+                            className="articleSearchInput"
+                            type="text"
+                            placeholder="Search for articles"
+                            id={inputId}
+                            value={searchQuery}
+                            onChange={handleSearch}
+                        />
+                        <button onClick={clearSearch}>Clear</button>
                     </div>
-                ) : (
-                    currentArticles.map(article => (
-                        <div key={article.id} className="articleContainer">
-                            <h2>{article.title}</h2>
-                            {article.image && (
-                                <img src={`data:image/png;base64,${article.image}`} alt="Article image" />
-                            )}
-                            <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
+                    {empty && filteredArticles.length === 0 ? (
+                        <div className="createFirstArticleContainer" onClick={goToCreate}>
+                            <p>Click here to create the first article!</p>
                         </div>
-                    ))
-                )}
-                <Pagination
-                    articlesPerPage={articlesPerPage}
-                    totalArticles={filteredArticles.length}
-                    paginate={handlePageChange}
-                    currentPage={currentPage} />
-            </article>
-            <Footer />
-        </section>
+                    ) : (
+                        currentArticles.map(article => (
+                            <div key={article.id} className="articleContainer">
+                                <h2>{article.title}</h2>
+                                {article.image && (
+                                    <img src={`data:image/png;base64,${article.image}`} alt="Article image" />
+                                )}
+                                <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
+                            </div>
+                        ))
+                    )}
+                    <Pagination
+                        articlesPerPage={articlesPerPage}
+                        totalArticles={filteredArticles.length}
+                        paginate={handlePageChange}
+                        currentPage={currentPage} />
+                </article>
+                <Footer />
+            </section>
+        </>
     );
 }
