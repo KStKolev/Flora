@@ -5,7 +5,7 @@
     background-color: hsl(50 61% 90%);
     -webkit-box-shadow: -3px 1px 5px 1px rgba(157,147,147,0.91);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,13 +13,18 @@
 }
 
 .navigationBar > li:not(.phone-nav) {
-    padding: 1.3em;
-    margin-left: 3em;
+    padding: 1.5em;
 }
 
 .navigationBar > li a {
-    font-size: 1.3em;
+    font-size: 1.5em;
     text-shadow: 0px 0px 0.5px black;
+    transition: 1s ease-in-out;
+}
+
+.navigationBar > li a:hover {
+    transition: 1s ease-in-out;
+    color: hsl(50 61% 60%);
 }
 
 .menuContainer > li {
