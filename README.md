@@ -4,7 +4,7 @@ STEP 1: Download and install Visual Studio from the official Microsoft website.
 
 STEP 2: After the IDE installation, go to section Code, which is located on a green button around the start of the repository. Click on it.
 
-![image](https://github.com/user-attachments/assets/9ff2a2e6-6b59-45d7-a3b7-a64cb15b80c5)
+<img src="https://github.com/user-attachments/assets/9ff2a2e6-6b59-45d7-a3b7-a64cb15b80c5" width="500"/>
 
 STEP 3: Copy the presented link from the HTTPS section.
 
