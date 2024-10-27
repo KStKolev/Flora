@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "homepage": "https://kstkolev.github.io/Flora",
+    "start": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
