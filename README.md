@@ -22,8 +22,8 @@ STEP 6: Click on the https button, which will start the application on a local l
 
 ![image](https://github.com/user-attachments/assets/601ca490-c7a5-49c1-be71-c2d7c314764a)
 
-STEP 7: Two terminals will open. Look at the one that has list of three components. The first one is named "Local". Copy the https URL and paste it to your browser.
+STEP 7: Two terminals will open. Look at the one that has list of three components. The first one is named "Local". Copy the https URL and paste it into your browser.
 
 ![image](https://github.com/user-attachments/assets/d95bdaa8-0491-4a6e-8b41-74f1eb0d30d3)
 
-And that's it! If you have any questions or there's some kind of a problem with your launching, feel free to write me a message to my email - koliokolev301@gmail.com! 😊
+And that's it! If you have any questions or there's some kind of a problem with your launching, feel free to write a message to my email - koliokolev301@gmail.com! 😊
