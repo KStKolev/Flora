@@ -41,7 +41,7 @@ STEP 7: Two terminals will open. Look at the one that has list of three componen
 And that's it! If you have any questions or there's some kind of problem with your launching, feel free to write a message to my email - koliokolev301@gmail.com! 😊
 
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="https://github.com/user-attachments/assets/a535bf56-df7c-4dbd-8a8e-d0bfceed9ef0" width="250"/>
-    <img src="https://github.com/user-attachments/assets/bb483896-5802-4b49-b2c2-2e10cdca2efe" width="250"/>
-    <img src="https://github.com/user-attachments/assets/b3f144a2-6ec2-4676-8eac-25064a909092" width="250"/>
+    <img src="https://github.com/user-attachments/assets/a535bf56-df7c-4dbd-8a8e-d0bfceed9ef0" width="200"/>
+    <img src="https://github.com/user-attachments/assets/bb483896-5802-4b49-b2c2-2e10cdca2efe" width="200"/>
+    <img src="https://github.com/user-attachments/assets/b3f144a2-6ec2-4676-8eac-25064a909092" width="200"/>
 </div>
