@@ -6,6 +6,7 @@ STEP 2: After the IDE installation, go to section Code, which is located on a gr
 ![image](https://github.com/user-attachments/assets/9ff2a2e6-6b59-45d7-a3b7-a64cb15b80c5)
 
 STEP 3: Copy the presented link from the HTTPS section.
+
 ![image](https://github.com/user-attachments/assets/61ce43c8-058b-4605-947f-8762e0fe9812)
 
 STEP 4: Open the terminal and go to the directory of your choosing. Type git clone and CTRL + V (which pastes the link for the application), and press enter.
