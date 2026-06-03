@@ -1,46 +1,33 @@
 ﻿namespace Flora.Server.Controllers.MainPage
 {
-    using Flora.Core.Infrastructure;
-    using Flora.Data;
-    using Flora.Data.Entities;
+    using Flora.Core.Interfaces;
+    using Flora.Core.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
+    using System.Security.Claims;
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class MainController : ControllerBase
     {
-        private FloraDbContext dbContext;
+        private readonly IArticleService _articleService;
 
-        public MainController(FloraDbContext _dbContext) 
+        public MainController(IArticleService articleService) 
         {
-            dbContext = _dbContext;
+            _articleService = articleService;
         }
 
         [HttpGet("LoadArticles")]
-
-        public async Task<IActionResult> LoadArticles() 
+        public async Task<IActionResult> LoadArticles()
         {
-            var articles = await dbContext
-            .Articles
-            .Select(a => new
-            {
-                a.Id,
-                a.Title,
-                a.Description,
-                a.TimeToRead,
-                Image = Convert.ToBase64String(a.Image),
-                IsAuthor = a.User.Username == CurrentUser.User.Username,
-                Username = a.User.Username,
-                UserImage = a.User.Image
-            })
-            .ToListAsync();
+            Guid userId = Guid
+                .Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
-            if (articles.Count() > 0)
-            {
-                return Ok(articles);
-            }
-            return Ok(Enumerable.Empty<Article>());
+            List<ArticlePreviewModel> articles = await _articleService
+                .GetArticlesAsync(userId);
+
+            return Ok(articles);
         }
     }
 }

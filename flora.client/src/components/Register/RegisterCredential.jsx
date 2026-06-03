@@ -7,19 +7,18 @@ export default function RegisterCredential(props) {
 
 
     return (
-        <>
-            <div className="registerInput">
-                <label htmlFor={inputId}>{props.label}</label>
-                <input
-                    type="text"
-                    value={props.value}
-                    onChange={props.onChange}
-                    id={inputId}
-                    onFocus={props.onFocus}
-                    onBlur={props.onBlur}
-                />
-                {props.error && <p className="errorMessage">{props.error}</p>}
-            </div>
-        </>
+        <div className="registerInput">
+            <label htmlFor={inputId}>{props.label}</label>
+
+            <input
+                type={props.type || "text"}
+                value={props.value}
+                onChange={props.onChange}
+                id={inputId}
+                onFocus={props.onFocus}
+            />
+
+            {props.error && <p className="errorMessage">{props.error}</p>}
+        </div>
     );
 }

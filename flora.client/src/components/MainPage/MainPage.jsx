@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import '/src/stylesheet/MainPage/MainPage.css';
-import NavBar from '/src/components/MainPage/NavBar/NavBar.jsx';
-import Footer from '/src/components/MainPage/Footer.jsx';
 import Pagination from '/src/components/MainPage/Pagination/Pagination.jsx';
 import { nanoid } from 'nanoid';
 import { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 export default function MainPage() {
     const inputId = nanoid();
@@ -20,6 +18,14 @@ export default function MainPage() {
     const [articlesPerPage] = useState(3);
     const [empty, setEmpty] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+
+    useEffect(() => {
+        fetch('https://localhost:7126/api/categories')
+            .then(response => response.json())
+            .then(data => setCategories(data));
+    }, []);
 
     useEffect(() => {
         const pageFromURL = parseInt(queryParams.get('page'), 10) || 1;
@@ -32,7 +38,13 @@ export default function MainPage() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5155/api/main/loadArticles')
+        const token = localStorage.getItem("token");
+
+        fetch('https://localhost:7126/api/main/loadArticles', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(response => response.text())
             .then(text => {
                 if (text) {
@@ -62,6 +74,25 @@ export default function MainPage() {
         navigate(`/mainPage?page=1`);
     };
 
+    useEffect(() => {
+        let filtered = articles;
+
+        if (searchQuery) {
+            filtered = filtered.filter(article =>
+                article.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+
+        if (selectedCategory) {
+            filtered = filtered.filter(article =>
+                article.categoryId === Number(selectedCategory)
+            );
+        }
+
+        setFilteredArticles(filtered);
+        setCurrentPage(1);
+    }, [selectedCategory]);
+
     const clearSearch = () => {
         setSearchQuery('');
         setFilteredArticles(articles);
@@ -74,44 +105,59 @@ export default function MainPage() {
     const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
     return (
-        <>
-            <section className="mainPageSection">
-                <NavBar />
-                <article className="mainPageArticle">
-                    <div className="searchContainer">
-                        <input
-                            className="articleSearchInput"
-                            type="text"
-                            placeholder="Search for articles"
-                            id={inputId}
-                            value={searchQuery}
-                            onChange={handleSearch}
-                        />
-                        <button onClick={clearSearch}>Clear</button>
+        <section className="mainPageSection">
+            <article className="mainPageArticle">
+                <div className="searchContainer">
+                    <input
+                        className="articleSearchInput"
+                        type="text"
+                        placeholder="Search for articles"
+                        id={inputId}
+                        value={searchQuery}
+                        onChange={handleSearch}
+                    />
+
+                    <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                        <option value="">All Categories</option>
+
+                        {categories.map(category => (
+                            <option
+                                key={category.id}
+                                value={category.id}
+                            >
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    <button onClick={clearSearch}>Clear</button>
+                </div>
+
+                {empty && filteredArticles.length === 0 ? (
+                    <div className="createFirstArticleContainer" onClick={goToCreate}>
+                        <p>Click here to create the first article!</p>
                     </div>
-                    {empty && filteredArticles.length === 0 ? (
-                        <div className="createFirstArticleContainer" onClick={goToCreate}>
-                            <p>Click here to create the first article!</p>
+                ) : (
+                    currentArticles.map(article => (
+                        <div key={article.id} className="articleContainer">
+                            <h2>{article.title}</h2>
+                            <p>{article.categoryName}</p>
+
+                            {article.imageUrl && (<img src={article.imageUrl} alt="Article image" /> )}
+                            <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
                         </div>
-                    ) : (
-                        currentArticles.map(article => (
-                            <div key={article.id} className="articleContainer">
-                                <h2>{article.title}</h2>
-                                {article.image && (
-                                    <img src={`data:image/png;base64,${article.image}`} alt="Article image" />
-                                )}
-                                <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
-                            </div>
-                        ))
-                    )}
-                    <Pagination
-                        articlesPerPage={articlesPerPage}
-                        totalArticles={filteredArticles.length}
-                        paginate={handlePageChange}
-                        currentPage={currentPage} />
-                </article>
-                <Footer />
-            </section>
-        </>
+                    ))
+                )}
+
+                <Pagination
+                    articlesPerPage={articlesPerPage}
+                    totalArticles={filteredArticles.length}
+                    paginate={handlePageChange}
+                    currentPage={currentPage} />
+            </article>
+        </section>
     );
 }

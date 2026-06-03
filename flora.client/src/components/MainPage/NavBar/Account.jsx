@@ -1,40 +1,46 @@
 import '/src/stylesheet/MainPage/NavBar/Account.css';
-import NavBar from '/src/components/MainPage/NavBar/NavBar.jsx';
-import Footer from '/src/components/MainPage/Footer.jsx';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 export default function Account() {
     const [user, setUser] = useState({});
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(null);
     const inputId = nanoid();
 
     useEffect(() => {
-        fetch('http://localhost:5155/api/user/getUser')
-            .then(r => r.json()
-                .then(data => {
-                    setUser(data);
-                })
-            );
+        const token = localStorage.getItem("token");
+
+        fetch('https://localhost:7126/api/user/getUser', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(r => r.json())
+        .then(data => {
+            setUser(data);
+        });
     }, []);
 
     const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setImage(reader.result);
-        };
-        reader.readAsDataURL(file);
+        setImage(event.target.files[0]);
     };
 
-
     const handleUpload = async () => {
-        const response = await fetch('http://localhost:5155/api/user/uploadImage', {
+        if (!image) {
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const response = await fetch('https://localhost:7126/api/user/uploadImage', {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify({ image })
+            body: formData
         });
 
         if (response.ok) {
@@ -45,22 +51,23 @@ export default function Account() {
 
 
     return (
-        <>
-            <NavBar />
-            <section className="accountSection">
-                <div className="accountContainer">
-                    <img src={`data:image/png;base64,${user.image}`} alt="accountPicture"></img>
-                    <div>
-                        <p>Name: {user.username}</p>
-                        <p>Email: {user.email}</p>
-                    </div>
-                    <input id={inputId} type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload}>
-                        Set profile picture
-                    </button>
+        <section className="accountSection">
+            <div className="accountContainer">
+                {user.imageUrl && (
+                    <img src={user.imageUrl || "/src/assets/anonymousUser.png"} alt="accountPicture" />
+                )}
+
+                <div>
+                    <p>Name: {user.username}</p>
+                    <p>Email: {user.email}</p>
                 </div>
-            </section>
-            <Footer/>
-        </>
+
+                <input id={inputId} type="file" onChange={handleFileChange} />
+
+                <button onClick={handleUpload}>
+                    Set profile picture
+                </button>
+            </div>
+        </section>
     );
 };

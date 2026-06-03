@@ -20,7 +20,7 @@
     justify-self: center;
 }
 
-.estimatedTimeContainer, .descriptionContainer, .titleContainer {
+.estimatedTimeContainer, .descriptionContainer, .titleContainer, .categoryContainer {
     display: grid;
     gap: 0.7em;
 }

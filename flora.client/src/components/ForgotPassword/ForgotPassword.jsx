@@ -18,10 +18,30 @@ export default function ForgotPassword() {
 
     const handleForgotPassword = async () =>
     {
-        const validationErrors = Object.keys(errors).some((key) => errors[key] !== '');
-        if (validationErrors) return;
+        const newErrors = {
+            username: !userName || userName.length < 4
+                ? "Username must be at least 4 characters long."
+                : "",
 
-        const response = await fetch('http://localhost:5155/api/account/forgotPassword', {
+            email: !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+                ? "Enter a valid email address."
+                : "",
+
+            newPassword: newPassword.length < 8 || newPassword.length > 12
+                ? "Password must be between 8 and 12 characters long."
+                : ""
+        };
+
+        setErrors(newErrors);
+
+        const hasErrors = Object.values(newErrors)
+            .some(error => error !== '');
+
+        if (hasErrors) {
+            return;
+        }
+
+        const response = await fetch('https://localhost:7126/api/account/forgotPassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -41,38 +61,9 @@ export default function ForgotPassword() {
         handleClearInputs();
     }
 
-    const handleBlur = (field, value) => {
-        validateField(field, value);
-    };
-
     const handleFocus = (field) => {
         setErrors((prevErrors) => ({ ...prevErrors, [field]: '' }));
         setSubmitErrors('');
-    };
-
-    const validateField = (name, value) => {
-        let error = '';
-        switch (name) {
-            case 'username':
-                if (!value || value.length < 4) {
-                    error = "Username must be at least 4 characters long.";
-                }
-                break;
-            case 'email':
-                {
-                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!value || !emailPattern.test(value)) {
-                        error = "Enter a valid email address.";
-                    }
-                    break;
-                }
-            case 'newPassword':
-                if (value.length < 8 || value.length > 12) {
-                    error = "Password must be between 8 and 12 characters long.";
-                }
-                break;
-        }
-        setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
     };
 
     const handleClearInputs = () => {
@@ -96,7 +87,6 @@ export default function ForgotPassword() {
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
                             error={errors.username}
-                            onBlur={() => handleBlur('username', userName)}
                             onFocus={() => handleFocus('username')} />
 
                         <ForgotPasswordCredential
@@ -104,7 +94,6 @@ export default function ForgotPassword() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             error={errors.email}
-                            onBlur={() => handleBlur('email', email)}
                             onFocus={() => handleFocus('email')} />
 
                         <ForgotPasswordCredential
@@ -112,7 +101,6 @@ export default function ForgotPassword() {
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             error={errors.newPassword}
-                            onBlur={() => handleBlur('newPassword', newPassword)}
                             onFocus={() => handleFocus('newPassword')} />
                     </div>
                     <button className="submitNewPasswordButton" onClick={handleForgotPassword}>Submit</button>

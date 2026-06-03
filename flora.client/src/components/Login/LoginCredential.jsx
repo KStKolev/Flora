@@ -33,7 +33,6 @@ export default function LoginCreadential(props)
                     onChange={props.onChange}
                     id={inputId}
                     onFocus={props.onFocus}
-                    onBlur={props.onBlur}
                 />
             </div>
             {props.error && <p className="errorMessage">{props.error}</p>}

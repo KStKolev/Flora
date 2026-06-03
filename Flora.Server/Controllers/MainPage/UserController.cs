@@ -1,52 +1,72 @@
 ﻿namespace Flora.Server.Controllers.MainPage
 {
-    using Flora.Core.Infrastructure;
-    using Flora.Data;
-    using Flora.Data.Entities;
-    using Flora.Server.Models.UserModels;
+    using Flora.Core.Interfaces;
+    using Flora.Core.Models;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
+    using System.Security.Claims;
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly FloraDbContext dbContext;
+        private readonly IUserService _userService;
+        private readonly IImageService _imageStorageService;
 
-        public UserController(FloraDbContext _dbContext) 
+        public UserController(IUserService userService,IImageService imageStorageService) 
         {
-            dbContext = _dbContext;
+            _userService = userService;
+            _imageStorageService = imageStorageService;
         }
 
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUser() 
         {
-            User? user = await dbContext
-                .Users
-                .FirstOrDefaultAsync(u => u.Username == CurrentUser.User.Username);
+            Guid userId = Guid
+                .Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
-            if (user == null) 
+            UserProfileModel? user = await _userService
+                .GetUserProfileAsync(userId);
+
+            if (user == null)
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
 
         [HttpPost("UploadImage")]
-        public async Task<IActionResult> UploadImage([FromBody]ImageUploadDto imageDto) 
+        public async Task<IActionResult> UploadImage(IFormFile image) 
         {
-            User? user = await dbContext
-                .Users
-                .FirstOrDefaultAsync(u => u.Username == CurrentUser.User.Username);
+            Guid userId = Guid
+                .Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
 
-            if (user == null) 
+            if (image == null || image.Length == 0)
+            {
+                return BadRequest("Image is required.");
+            }
+
+            using var stream = image
+                .OpenReadStream();
+
+            string? imageUrl = await _imageStorageService
+                .UploadImageAsync(stream, image.FileName);
+
+            if (string.IsNullOrWhiteSpace(imageUrl))
+            {
+                return BadRequest("Image upload failed.");
+            }
+
+            UserProfileModel? user = await _userService
+                .UploadUserImageAsync(userId, imageUrl);
+
+            if (user == null)
             {
                 return NotFound();
             }
 
-            user.Image = Convert.FromBase64String(imageDto.Image.Split(",")[1]);
-            dbContext.Users.Update(user);
-            await dbContext.SaveChangesAsync();
             return Ok(user);
         }
     }

@@ -1,9 +1,8 @@
 import '/src/stylesheet/MainPage/MainPage.css';
-import NavBar from '/src/components/MainPage/NavBar/NavBar.jsx';
-import Footer from '/src/components/MainPage/Footer.jsx';
 import Pagination from '/src/components/MainPage/Pagination/Pagination.jsx';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 export default function SavedArticles() {
     const [currentPage, setCurrentPage] = useState(1);
     const [articles, setArticles] = useState([]);
@@ -17,17 +16,23 @@ export default function SavedArticles() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5155/api/save/getSavedArticles')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    setArticles(data);
-                    setFilteredArticles(data);
-                    setEmpty(data.length === 0);
-                } else {
-                    setEmpty(true);
-                }
-            });
+        const token = localStorage.getItem("token");
+
+        fetch('https://localhost:7126/api/save/getSavedArticles', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                setArticles(data);
+                setFilteredArticles(data);
+                setEmpty(data.length === 0);
+            } else {
+                setEmpty(true);
+            }
+        });
     }, []);
 
     const handleSearch = (event) => {
@@ -52,44 +57,44 @@ export default function SavedArticles() {
     const currentArticles = filteredArticles.slice(indexOfFirstArticle, indexOfLastArticle);
 
     return (
-        <>
-            <section className="mainPageSection">
-                <NavBar />
-                <article className="mainPageArticle">
-                    <div className="searchContainer">
-                        <input
-                            className="articleSearchInput"
-                            type="text"
-                            placeholder="Search for articles"
-                            value={searchQuery}
-                            onChange={handleSearch}
-                        />
-                        <button onClick={clearSearch}>Clear</button>
-                    </div>
-                    {empty && filteredArticles.length === 0 ? (
-                        <div className="emptyMessage">
-                            <p>No saved articles found.</p>
-                        </div>
-                    ) : (
-                        currentArticles.map(article => (
-                            <div key={article.id} className="articleContainer">
-                                <h2>{article.title}</h2>
-                                {article.image && (
-                                    <img src={`data:image/png;base64,${article.image}`} alt="Article image" />
-                                )}
-                                <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
-                            </div>
-                        ))
-                    )}
-                    <Pagination
-                        articlesPerPage={articlesPerPage}
-                        totalArticles={filteredArticles.length}
-                        paginate={handlePageChange}
-                        currentPage={currentPage}
+        <section className="mainPageSection">
+            <article className="mainPageArticle">
+                <div className="searchContainer">
+                    <input
+                        className="articleSearchInput"
+                        type="text"
+                        placeholder="Search for articles"
+                        value={searchQuery}
+                        onChange={handleSearch}
                     />
-                </article>
-                <Footer />
-            </section>
-        </>
+
+                    <button onClick={clearSearch}>Clear</button>
+                </div>
+                {empty && filteredArticles.length === 0 ? (
+                    <div className="emptyMessage">
+                        <p>No saved articles found.</p>
+                    </div>
+                ) : (
+                    currentArticles.map(article => (
+                        <div key={article.id} className="articleContainer">
+                            <h2>{article.title}</h2>
+
+                            {article.imageUrl && (
+                                <img src={article.imageUrl} alt="Article image" />
+                            )}
+
+                            <Link className="articleLink" to="/mainPage/article" state={{ article }}>Go to Article</Link>
+                        </div>
+                    ))
+                )}
+
+                <Pagination
+                    articlesPerPage={articlesPerPage}
+                    totalArticles={filteredArticles.length}
+                    paginate={handlePageChange}
+                    currentPage={currentPage}
+                />
+            </article>
+        </section>
     );
 }

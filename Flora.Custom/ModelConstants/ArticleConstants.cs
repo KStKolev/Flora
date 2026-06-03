@@ -11,5 +11,6 @@
 
         public const string TITLE_LENGTH_ERROR = "Title must be maximum 30 characters long.";
         public const string DESCRIPTION_LENGTH_ERROR = "Description must be maximum 3000 characters long.";
+        public const string ARTICLE_USERNAME_LENGTH_ERROR = "Article creator username must be maximum 100 characters long.";
     }
 }

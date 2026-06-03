@@ -1,20 +1,27 @@
 ﻿namespace Flora.Server.Controllers.MainPage
 {
-    using Flora.Core.Infrastructure;
-    using Flora.Data;
-    using Flora.Data.Entities;
+    using Flora.Core.Interfaces;
+    using Flora.Core.Models;
     using Flora.Server.Models.ArticleModels;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
+    using System.Security.Claims;
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ArticleController : ControllerBase
     {
-        private readonly FloraDbContext dbContext;
-        public ArticleController(FloraDbContext _dbContext) 
+        private readonly IArticleService _articleService;
+        private readonly ICategoryService _categoryService;
+        private readonly IImageService _imageService;
+
+        public ArticleController(IArticleService articleService, IImageService imageService, 
+            ICategoryService categoryService) 
         {
-            dbContext = _dbContext;
+            _articleService = articleService;
+            _imageService = imageService;
+            _categoryService = categoryService;
         }
 
         [HttpPost]
@@ -31,30 +38,42 @@
                 return BadRequest("Image is required.");
             }
 
-            byte[] imageBytes;
-            using (var memoryStream = new MemoryStream())
+            bool categoryExists = await _categoryService
+                .CheckCategoryByIdAsync(dto.CategoryId);
+
+            if (!categoryExists)
             {
-                await dto.Image.CopyToAsync(memoryStream);
-                imageBytes = memoryStream.ToArray();
+                return BadRequest("Invalid category.");
             }
 
-            User articleCreator = await dbContext
-                .Users
-                .FirstAsync(u => u.Username == CurrentUser.User.Username);
+            using var stream = dto
+                .Image
+                .OpenReadStream();
 
-            Article article = new()
+            string imageUrl = await _imageService
+                .UploadImageAsync(stream, dto.Image.FileName);
+
+            if (string.IsNullOrWhiteSpace(imageUrl))
+            {
+                return BadRequest("Image upload failed.");
+            }
+
+            Guid userId = Guid
+                .Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+            CreateArticleServiceModel article = new()
             {
                 Title = dto.Title,
                 Description = dto.Description,
                 TimeToRead = dto.TimeToRead,
-                Image = imageBytes,
-                UserId = articleCreator.Id,
-                User = articleCreator
+                ImageUrl = imageUrl,
+                CategoryId = dto.CategoryId,
+                UserId = userId,
             };
-            articleCreator.Articles.Add(article);
 
-            await dbContext.Articles.AddAsync(article);
-            await dbContext.SaveChangesAsync();
+            await _articleService
+                .CreateArticleAsync(article);
+
             return Ok();
         }
 
@@ -62,14 +81,23 @@
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var article = await dbContext.Articles.FindAsync(id);
-            if (article == null)
+            Guid userId = Guid
+                .Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+            try
+            {
+                await _articleService
+                    .DeleteArticleAsync(id, userId);
+            }
+            catch (KeyNotFoundException)
             {
                 return NotFound("Article not found.");
             }
+            catch (UnauthorizedAccessException)
+            {
+                return Forbid("User is forbidden to remove the article.");
+            }
 
-            dbContext.Articles.Remove(article);
-            await dbContext.SaveChangesAsync();
             return Ok();
         }
     }

@@ -1,21 +1,28 @@
 ﻿#root {
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: min-content;
-    align-items: end;
+    min-height: 100vh;
+}
+
+html,
+body {
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
 }
 
 .loginSection, .registrationSection, .forgotPasswordSection {
+    display: grid;
     background-color: white;
     border-radius: 8px;
-    display: grid;
-    justify-self: center;
-    margin: auto;
-    z-index: 1;
-    -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
-    -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 button, a {
@@ -26,7 +33,6 @@ button, a {
 
 button:hover, a:hover {
     cursor: pointer;
-    transform: scale(1.05);
 }
 
 input {

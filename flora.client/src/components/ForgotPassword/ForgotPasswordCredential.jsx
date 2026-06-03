@@ -12,7 +12,6 @@ export default function ForgotPasswordCredential(props) {
                     type="text"
                     id={inputId}
                     value={props.value}
-                    onBlur={props.onBlur}
                     onFocus={props.onFocus}
                     onChange={props.onChange}
                 />

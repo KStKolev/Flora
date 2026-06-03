@@ -1,8 +1,8 @@
 .registrationSection {
-    height: 80%;
+    width: 20%;
+    height: 70%;
     gap: 1.5em;
     padding: 3em;
-    margin-top: 4em;
     align-items: start;
     grid-template-columns: 1fr;
 }
@@ -13,22 +13,22 @@
 }
 
 .signInButton {
-    color: white;
-    font-size: 1.15em;
-    border: none;
-    border-radius: 2vw;
     width: 100%;
+    color: white;
+    font-size: 1.4em;
+    border: none;
     justify-self: center;
+    padding: 0.5em;
 }
 
 .signInContainer {
     display: grid;
-    gap: 0.3em;
+    gap: 1.2em;
     justify-items: center;
 }
 
 .signInContainer > * {
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 .registerError {

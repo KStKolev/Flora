@@ -32,6 +32,14 @@
     text-align: center;
 }
 
+.categoryBadge {
+    background-color: #4caf50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
 .article-container > img {
     width: 40%;
     justify-self: center;
@@ -39,6 +47,10 @@
     -webkit-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     -moz-box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
     box-shadow: -3px 1px 11px 1px rgba(157,147,147,0.91);
+}
+
+.articleCategory {
+    text-align: center;
 }
 
 .articleDisplayDescription {
@@ -71,7 +83,7 @@
     justify-content: center;
 }
 
-.deleteArticle.show, .saveArticle, .removeArticle {
+.deleteArticle, .saveArticle, .removeArticle {
     font-size: 1em;
     padding: 1em;
     border: 1px solid rgba(157,147,147,0.91);
@@ -85,10 +97,6 @@
 }
 
 .deleteArticle {
-    display: none;
-}
-
-.deleteArticle.show {
     width: 17%;
     text-align: center;
     display: block;
@@ -118,7 +126,7 @@
         gap: 1em;
     }
 
-    .deleteArticle.show, .saveArticle {
+    .deleteArticle, .saveArticle {
         width: fit-content;
         padding: 0.2em;
     }
