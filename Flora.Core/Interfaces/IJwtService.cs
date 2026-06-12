@@ -1,9 +1,9 @@
 ﻿namespace Flora.Core.Interfaces
 {
-    using Flora.Data.Entities;
+    using Flora.Core.Models;
 
     public interface IJwtService
     {
-        string GenerateToken(User user);
+        string GenerateToken(AuthUserModel user);
     }
 }

@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using static Flora.Custom.ModelConstants.FormModelConstants;
 
-    public class RegisterModel
+    public class RegisterDto
     {
         [Required(ErrorMessage = USERNAME_REQUIRED)]
         [MinLength(MIN_USERNAME_LENGTH, 

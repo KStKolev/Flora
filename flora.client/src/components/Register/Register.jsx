@@ -73,8 +73,6 @@ export default function Register({ setIsAuthenticated }) {
             const data = await response.json();
 
             localStorage.setItem("token", data.token);
-            localStorage.setItem("userId", data.userId);
-            localStorage.setItem("username", data.username);
 
             setIsAuthenticated(true);
 

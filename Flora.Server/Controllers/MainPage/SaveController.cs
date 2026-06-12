@@ -6,9 +6,9 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Security.Claims;
 
-    [ApiController]
-    [Authorize]
     [Route("api/[controller]")]
+    [Authorize]
+    [ApiController]
     public class SaveController : ControllerBase
     {
         private readonly IUserArticleService _userArticleService;

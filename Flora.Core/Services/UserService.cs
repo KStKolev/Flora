@@ -14,12 +14,6 @@
             _userDataService = userDataService;
         }
 
-        public async Task<User?> GetUserByIdAsync(Guid id)
-        {
-            return await _userDataService
-                .GetUserByIdAsync(id);
-        }
-
         public async Task<UserProfileModel?> GetUserProfileAsync(Guid userId)
         {
             User? user = await _userDataService
@@ -39,7 +33,7 @@
             };
         }
 
-        public async Task<User?> LoginUser(string username, string password, PasswordHash passwordHash)
+        public async Task<AuthUserModel?> LoginUser(string username, string password, PasswordHash passwordHash)
         {
             User? user = await _userDataService
                 .GetUserByUsernameAsync(username);
@@ -57,10 +51,15 @@
                 return null;
             }
 
-            return user;
+            return new AuthUserModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
         }
 
-        public async Task<User?> RegisterUser(string username, string email, string password, PasswordHash passwordHash)
+        public async Task<AuthUserModel?> RegisterUser(string username, string email, string password, PasswordHash passwordHash)
         {
             User? existingUser = await _userDataService
                 .GetUserByUsernameAsync(username);
@@ -81,10 +80,15 @@
             await _userDataService
                 .AddUserAsync(user);
 
-            return user;
+            return new AuthUserModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
         }
 
-        public async Task<User?> SetNewPassword(string username, string email, string newPassword, PasswordHash passwordHash)
+        public async Task<AuthUserModel?> SetNewPassword(string username, string email, string newPassword, PasswordHash passwordHash)
         {
             User? user = await _userDataService
                 .GetUserByUsernameAsync(username);
@@ -100,7 +104,12 @@
             await _userDataService
                 .UpdateUserAsync(user);
 
-            return user;
+            return new AuthUserModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
         }
 
         public async Task<UserProfileModel?> UploadUserImageAsync(Guid userId, string imageUrl)

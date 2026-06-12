@@ -1,7 +1,7 @@
 ﻿namespace Flora.Core.Services
 {
     using Flora.Core.Interfaces;
-    using Flora.Data.Entities;
+    using Flora.Core.Models;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
     using System.IdentityModel.Tokens.Jwt;
@@ -17,7 +17,7 @@
             _configuration = configuration;
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(AuthUserModel user)
         {
             Claim[] claims =
             {

@@ -63,13 +63,7 @@ export default function MainPage() {
     };
 
     const handleSearch = (event) => {
-        const query = event.target.value.toLowerCase();
-        setSearchQuery(query);
-
-        const filtered = articles.filter(article =>
-            article.title.toLowerCase().includes(query)
-        );
-        setFilteredArticles(filtered);
+        setSearchQuery(event.target.value);
         setCurrentPage(1);
         navigate(`/mainPage?page=1`);
     };
@@ -91,10 +85,11 @@ export default function MainPage() {
 
         setFilteredArticles(filtered);
         setCurrentPage(1);
-    }, [selectedCategory]);
+    }, [selectedCategory, searchQuery, articles]);
 
     const clearSearch = () => {
         setSearchQuery('');
+        setSelectedCategory('');
         setFilteredArticles(articles);
         setCurrentPage(1);
         navigate(`/mainPage?page=1`);

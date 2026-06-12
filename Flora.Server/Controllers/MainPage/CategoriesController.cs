@@ -1,7 +1,7 @@
-﻿namespace Flora.Server.Controllers
+﻿namespace Flora.Server.Controllers.MainPage
 {
     using Flora.Core.Interfaces;
-    using Flora.Data.Entities;
+    using Flora.Core.Models;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
@@ -18,11 +18,10 @@
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            List<Category> categories = await _categoryService
+            List<CategoryModel> categories = await _categoryService
                 .GetCategoriesAsync();
 
             return Ok(categories);
         }
-
     }
 }

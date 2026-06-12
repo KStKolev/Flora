@@ -1,8 +1,8 @@
 ﻿namespace Flora.Server.Controllers.LoginForm
 {
     using Flora.Core.Interfaces;
+    using Flora.Core.Models;
     using Flora.Core.Services;
-    using Flora.Data.Entities;
     using Flora.Server.Models.AccountModels;
     using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +20,7 @@
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel loginModel) 
+        public async Task<IActionResult> Login([FromBody] LoginDto loginModel) 
         {
             if (!ModelState.IsValid) 
             {
@@ -29,7 +29,7 @@
 
             PasswordHash passwordHash = new();
 
-            User? foundUser = await _userService
+            AuthUserModel? foundUser = await _userService
                 .LoginUser(loginModel.Username, loginModel.Password, passwordHash);
 
             if (foundUser == null)
@@ -40,17 +40,11 @@
             string token = _jwtService
                 .GenerateToken(foundUser);
 
-            return Ok(new
-            {
-                token,
-                userId = foundUser.Id,
-                username = foundUser.Username,
-                email = foundUser.Email
-            });
+            return Ok(new { token });
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel) 
+        public async Task<IActionResult> Register([FromBody] RegisterDto registerModel) 
         {
             if (!ModelState.IsValid) 
             {
@@ -59,7 +53,7 @@
 
             PasswordHash passwordHash = new();
 
-            User? userRegistered = await _userService
+            AuthUserModel? userRegistered = await _userService
                 .RegisterUser(registerModel.Username, registerModel.Email, 
                     registerModel.Password, passwordHash);
 
@@ -71,17 +65,11 @@
             string token = _jwtService
                 .GenerateToken(userRegistered);
 
-            return Ok(new
-            {
-                token,
-                userId = userRegistered.Id,
-                username = userRegistered.Username,
-                email = userRegistered.Email
-            });
+            return Ok(new { token });
         }
 
         [HttpPost("ForgotPassword")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel forgotPasswordModel) 
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordModel) 
         {
             if (!ModelState.IsValid) 
             {
@@ -90,7 +78,7 @@
 
             PasswordHash passwordHash = new();
 
-            User? foundUser = await _userService
+            AuthUserModel? foundUser = await _userService
                 .SetNewPassword(forgotPasswordModel.Username, forgotPasswordModel.Email, 
                     forgotPasswordModel.NewPassword, passwordHash);
 

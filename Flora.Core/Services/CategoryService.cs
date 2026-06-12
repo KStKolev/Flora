@@ -1,6 +1,7 @@
 ﻿namespace Flora.Core.Services
 {
     using Flora.Core.Interfaces;
+    using Flora.Core.Models;
     using Flora.Data.Entities;
     using Flora.Data.Interfaces;
 
@@ -19,10 +20,18 @@
                 .GetCategoryByIdAsync(id) != null;
         }
 
-        public async Task<List<Category>> GetCategoriesAsync()
+        public async Task<List<CategoryModel>> GetCategoriesAsync()
         {
-            return await _categoryDataService
+            List<Category> categories = await _categoryDataService
                 .GetCategoriesAsync();
+
+            return categories
+                .Select(c => new CategoryModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                })
+                .ToList();
         }
     }
 }
